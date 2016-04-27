@@ -1,0 +1,37 @@
+Source: android-platform-external-conscrypt
+Section: java
+Priority: optional
+Maintainer: Android Tools Maintainers <android-tools-devel@lists.alioth.debian.org>
+Uploaders: Kai-Chung Yan <seamlikok@gmail.com>
+Build-Depends: debhelper (>= 9),
+               default-jdk,
+               dh-exec,
+               gradle-debian-helper,
+               javahelper,
+               libjarjar-java,
+               maven-repo-helper
+Standards-Version: 3.9.8
+Homepage: https://conscrypt.org
+Vcs-Git: https://anonscm.debian.org/git/android-tools/android-platform-external-conscrypt.git
+Vcs-Browser: https://anonscm.debian.org/cgit/android-tools/android-platform-external-conscrypt.git
+
+Package: libconscrypt-java
+Section: java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}
+Description: Java Security Provider that uses OpenSSL
+ conscrypt is hosted along with The Android Open Source Project and has no
+ release tags, hence it is maintained by Android Tools Maintainers and follows
+ the same versioning scheme as other Android packages.
+
+Package: libconscrypt-java-doc
+Architecture: all
+Section: docs
+Depends: ${misc:Depends}
+Recommends: default-jdk-doc, ${java:Recommends}
+Description: Java Security Provider that uses OpenSSL - Documentation
+ conscrypt is hosted along with The Android Open Source Project and has no
+ release tags, hence it is maintained by Android Tools Maintainers and follows
+ the same versioning scheme as other Android packages.
+ .
+ This package provides Javadoc for libconscrypt-java.

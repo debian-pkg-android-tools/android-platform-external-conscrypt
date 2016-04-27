@@ -1,0 +1,13 @@
+.debhelper/
+.gradle/
+.gradlehome/
+.javahelper_clean
+.mh/
+*.doc-base.javadoc
+*.log
+*.pom
+*.substvars
+build/
+debhelper-build-stamp
+files
+libconscrypt-java*/

@@ -1,0 +1,2 @@
+debian/conscrypt.pom --artifact=debian/build/libs/conscrypt-0.jar --java-lib
+debian/conscrypt-jarjared.pom --artifact=debian/build/libs/conscrypt-jarjared-0.jar --java-lib --usj-name=com.android.conscrypt

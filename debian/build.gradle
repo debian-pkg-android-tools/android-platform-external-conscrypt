@@ -1,0 +1,36 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+version = '0'
+group = 'org.conscrypt'
+compileJava.options.encoding = 'UTF-8'
+compileJava.options.compilerArgs += ['-Xmaxwarns', '9999999']
+
+sourceSets.main.java {
+  srcDir '../src/compat/java'
+  srcDir '../src/main/java'
+  srcDir '../src/platform/java'
+  srcDir '../src/stub/java'
+}
+
+javadoc.options {
+  links 'file:///usr/share/doc/default-jdk-doc/api'
+}
+
+task poms {
+  outputs.files "${buildDir}/*.pom"
+  doFirst {
+    pom {
+      project {
+        artifactId project.name
+        version project.version
+      }
+    }.writeTo("${buildDir}/${project.name}.pom")
+    pom {
+      project {
+        artifactId "${project.name}-jarjared"
+        groupId 'com.android'
+      }
+    }.writeTo("${buildDir}/${project.name}-jarjared.pom")
+  }
+}
