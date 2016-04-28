@@ -1,1 +1,1 @@
-include 'conscrypt'
+rootProject.name = 'conscrypt'
