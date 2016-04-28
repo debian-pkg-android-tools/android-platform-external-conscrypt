@@ -7,7 +7,6 @@ compileJava.options.encoding = 'UTF-8'
 compileJava.options.compilerArgs += ['-Xmaxwarns', '9999999']
 
 sourceSets.main.java {
-  srcDir '../src/compat/java'
   srcDir '../src/main/java'
   srcDir '../src/platform/java'
   srcDir '../src/stub/java'

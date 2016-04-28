@@ -9,6 +9,7 @@ Build-Depends: debhelper (>= 9),
                gradle-debian-helper,
                javahelper,
                libjarjar-java,
+               libboringssl-dev,
                maven-repo-helper
 Standards-Version: 3.9.8
 Homepage: https://conscrypt.org
