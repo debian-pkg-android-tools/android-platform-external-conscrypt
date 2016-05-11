@@ -10,7 +10,7 @@ UPSTREAM_TAG = android-$(subst +,_,$(DEB_VERSION_UPSTREAM))
 override_dh_auto_build:
 	$(CC) src/gen/native/generate_constants.cc \
 	      -o generate_constants \
-	      -fPIC -include /usr/include/boringssl \
+	      -I/usr/include/boringssl \
 	      $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS)
 	./generate_constants > src/main/java/org/conscrypt/NativeConstants.java
 	dh_auto_build -- --settings-file debian/settings.gradle assemble javadoc poms
@@ -28,7 +28,7 @@ override_dh_installdocs:
 override_dh_auto_clean:
 	dh_auto_clean
 	$(RM) -r debian/.gradle
-	$(RM) generate_constants
+	$(RM) generate_constants src/main/java/org/conscrypt/NativeConstants.java
 
 get-orig-source: $(UPSTREAM_TAG).tar.gz
 	mk-origtargz --repack --compression xz $<
