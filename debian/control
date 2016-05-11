@@ -8,6 +8,7 @@ Build-Depends: debhelper (>= 9),
                dh-exec,
                gradle-debian-helper,
                javahelper,
+               libandroid-luni-java,
                libjarjar-java,
                libboringssl-dev,
                maven-repo-helper

@@ -6,6 +6,14 @@ group = 'org.conscrypt'
 compileJava.options.encoding = 'UTF-8'
 compileJava.options.compilerArgs += ['-Xmaxwarns', '9999999']
 
+repositories {
+  maven { url '/usr/share/maven-repo' }
+}
+
+dependencies {
+  compile 'com.android:luni:debian'
+}
+
 sourceSets.main.java {
   srcDir '../src/main/java'
   srcDir '../src/platform/java'
@@ -14,6 +22,12 @@ sourceSets.main.java {
 
 javadoc.options {
   links 'file:///usr/share/doc/default-jdk-doc/api'
+}
+
+jar.manifest {
+  attributes 'Class-Path': configurations.compile.collect {
+    it.getPath()
+  }.join(' ')
 }
 
 task poms {
