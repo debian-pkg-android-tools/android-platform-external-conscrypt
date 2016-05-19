@@ -3,14 +3,18 @@ Section: java
 Priority: optional
 Maintainer: Android Tools Maintainers <android-tools-devel@lists.alioth.debian.org>
 Uploaders: Kai-Chung Yan <seamlikok@gmail.com>
-Build-Depends: debhelper (>= 9),
+Build-Depends: android-platform-libcore-source-6.0.1,
+               debhelper (>= 9),
                default-jdk,
                dh-exec,
                gradle-debian-helper,
                javahelper,
-               libandroid-luni-java,
-               libjarjar-java,
+               libandroid-dex-java,
                libboringssl-dev,
+               libicu4j-java (>= 56.1),
+               libjarjar-java,
+               libkxml2-java,
+               libxpp3-java,
                maven-repo-helper
 Standards-Version: 3.9.8
 Homepage: https://conscrypt.org
@@ -21,6 +25,7 @@ Package: libconscrypt-java
 Section: java
 Architecture: all
 Depends: ${java:Depends}, ${misc:Depends}
+Built-Using: android-platform-libcore-source-6.0.1
 Description: Java Security Provider that uses OpenSSL
  conscrypt is hosted along with The Android Open Source Project and has no
  release tags, hence it is maintained by Android Tools Maintainers and follows

@@ -11,13 +11,19 @@ repositories {
 }
 
 dependencies {
-  compile 'com.android:luni:debian'
+  compile 'com.android:dex:debian'
+  compile 'com.ibm.icu:icu4j:debian'
+  compile 'kxml2:kxml2:debian'
+  compile 'xpp3:xpp3:debian'
 }
 
 sourceSets.main.java {
   srcDir '../src/main/java'
   srcDir '../src/platform/java'
-  srcDir '../src/stub/java'
+  srcDir 'file:///usr/src/android-platform-libcore-6.0.1/dalvik/main/java'
+  srcDir 'file:///usr/src/android-platform-libcore-6.0.1/libart/main/java'
+  srcDir 'file:///usr/src/android-platform-libcore-6.0.1/luni/main/java'
+  srcDir 'file:///usr/src/android-platform-libcore-6.0.1/xml/main/java'
 }
 
 javadoc.options {
@@ -41,4 +47,8 @@ task poms {
       groupId 'com.android'
     }
   }.writeTo("${buildDir}/${project.name}-jarjared.pom")
+}
+
+clean.doLast {
+  delete "${buildDir}/*.pom"
 }
