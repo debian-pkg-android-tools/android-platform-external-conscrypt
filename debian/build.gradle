@@ -3,8 +3,6 @@ apply plugin: 'maven'
 
 version = '0'
 group = 'org.conscrypt'
-compileJava.options.encoding = 'UTF-8'
-compileJava.options.compilerArgs += ['-Xmaxwarns', '9999999']
 
 repositories {
   maven { url '/usr/share/maven-repo' }
