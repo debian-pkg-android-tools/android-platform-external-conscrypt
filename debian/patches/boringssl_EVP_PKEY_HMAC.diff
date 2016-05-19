@@ -19,16 +19,7 @@ Last-Update: 2015-06-15
    CONST(RSA_PKCS1_PADDING);
 --- a/src/main/java/org/conscrypt/NativeCrypto.java
 +++ b/src/main/java/org/conscrypt/NativeCrypto.java
-@@ -84,8 +84,6 @@
-     public static native long EVP_PKEY_new_RSA(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q,
-             byte[] dmp1, byte[] dmq1, byte[] iqmp);
- 
--    public static native long EVP_PKEY_new_mac_key(int type, byte[] key);
--
-     public static native int EVP_PKEY_size(NativeRef.EVP_PKEY pkey);
- 
-     public static native int EVP_PKEY_type(NativeRef.EVP_PKEY pkey);
-@@ -337,6 +335,18 @@
+@@ -337,6 +337,18 @@
              int outOffset, byte[] nonce, byte[] in, int inOffset, int inLength, byte[] ad)
              throws BadPaddingException;
  
@@ -389,3 +380,39 @@ Last-Update: 2015-06-15
      NATIVE_METHOD(NativeCrypto, RAND_seed, "([B)V"),
      NATIVE_METHOD(NativeCrypto, RAND_load_file, "(Ljava/lang/String;J)I"),
      NATIVE_METHOD(NativeCrypto, RAND_bytes, "([B)V"),
+--- a/src/main/java/org/conscrypt/OpenSSLKey.java
++++ b/src/main/java/org/conscrypt/OpenSSLKey.java
+@@ -295,12 +295,7 @@
+     }
+ 
+     public SecretKey getSecretKey(String algorithm) throws NoSuchAlgorithmException {
+-        switch (NativeCrypto.EVP_PKEY_type(ctx)) {
+-            case NativeConstants.EVP_PKEY_HMAC:
+-                return new OpenSSLSecretKey(algorithm, this);
+-            default:
+-                throw new NoSuchAlgorithmException("unknown PKEY type");
+-        }
++        throw new NoSuchAlgorithmException("unknown PKEY type");
+     }
+ 
+     @Override
+--- a/src/main/java/org/conscrypt/OpenSSLSecretKey.java
++++ b/src/main/java/org/conscrypt/OpenSSLSecretKey.java
+@@ -38,7 +38,7 @@
+         this.algorithm = algorithm;
+         this.encoded = encoded;
+ 
+-        type = NativeConstants.EVP_PKEY_HMAC;
++        type = 0;
+         key = new OpenSSLKey(NativeCrypto.EVP_PKEY_new_mac_key(type, encoded));
+     }
+ 
+@@ -52,7 +52,7 @@
+ 
+     public static OpenSSLKey getInstance(SecretKey key) throws InvalidKeyException {
+         try {
+-            return new OpenSSLKey(NativeCrypto.EVP_PKEY_new_mac_key(NativeConstants.EVP_PKEY_HMAC,
++            return new OpenSSLKey(NativeCrypto.EVP_PKEY_new_mac_key(0,
+                     key.getEncoded()));
+         } catch (Exception e) {
+             throw new InvalidKeyException(e);
