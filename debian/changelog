@@ -1,5 +1,5 @@
 android-platform-external-conscrypt (6.0.1+r16-1) UNRELEASED; urgency=medium
 
-  * Initial release. (Closes: #XXXXXX)
+  * Initial release. (Closes: #824720)
 
  -- Kai-Chung Yan <seamlikok@gmail.com>  Wed, 27 Apr 2016 17:20:54 +0800
