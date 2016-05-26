@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-version = '0'
+version = 'android-6.0.1'
 group = 'org.conscrypt'
 
 repositories {
@@ -40,10 +40,7 @@ task poms {
     project {}
   }.writeTo("${buildDir}/${project.name}.pom")
   pom {
-    project {
-      artifactId "${project.name}-jarjared"
-      groupId 'com.android'
-    }
+    project { groupId 'com.android' }
   }.writeTo("${buildDir}/${project.name}-jarjared.pom")
 }
 
