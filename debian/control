@@ -6,6 +6,7 @@ Uploaders: Kai-Chung Yan <seamlikok@gmail.com>
 Build-Depends: android-platform-libcore-source-6.0.1,
                debhelper (>= 9),
                default-jdk,
+               default-jdk-doc,
                dh-exec,
                gradle-debian-helper,
                javahelper,
@@ -33,8 +34,7 @@ Description: Java Security Provider that uses OpenSSL
 Package: libconscrypt-java-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}
-Recommends: default-jdk-doc, ${java:Recommends}
+Depends: default-jdk-doc, ${misc:Depends}
 Description: Java Security Provider that uses OpenSSL - Documentation
  conscrypt is hosted along with The Android Open Source Project and has no
  release tags, hence it is maintained by Android Tools Maintainers and follows
