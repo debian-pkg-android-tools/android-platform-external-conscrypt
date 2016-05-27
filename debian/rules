@@ -3,6 +3,9 @@
 include /usr/share/dpkg/pkg-info.mk
 
 UPSTREAM_TAG = android-$(subst +,_,$(DEB_VERSION_UPSTREAM))
+define ANDROID_VERSION =
+$(shell echo $(DEB_VERSION_UPSTREAM) | sed --expression="s/\+r.*//")
+endef
 
 %:
 	dh $@ --buildsystem=gradle --with maven-repo-helper,javahelper
@@ -13,7 +16,9 @@ override_dh_auto_build:
 	      -I/usr/include/boringssl \
 	      $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS)
 	./generate_constants > src/main/java/org/conscrypt/NativeConstants.java
-	dh_auto_build -- --settings-file debian/settings.gradle assemble javadoc poms
+	dh_auto_build -- --settings-file debian/settings.gradle \
+                         --project-prop androidVersion=$(ANDROID_VERSION) \
+                         assemble javadoc poms
 	java -jar /usr/share/java/jarjar.jar \
 	     process jarjar-rules.txt \
              debian/build/libs/conscrypt-*.jar \
