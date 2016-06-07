@@ -22,7 +22,11 @@ Vcs-Browser: https://anonscm.debian.org/cgit/android-tools/android-platform-exte
 
 Package: libconscrypt-java
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}
+Depends: libandroid-dex-java,
+         libicu4j-java (>= 56.1),
+         libkxml2-java,
+         libxpp3-java,
+         ${misc:Depends}
 Built-Using: android-platform-libcore-source-6.0.1
 Description: Java Security Provider that uses OpenSSL
  conscrypt is hosted along with The Android Open Source Project and has no

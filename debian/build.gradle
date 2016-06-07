@@ -29,12 +29,6 @@ javadoc.options {
   links 'file:///usr/share/doc/default-jdk-doc/api'
 }
 
-jar.manifest {
-  attributes 'Class-Path': configurations.compile.collect {
-    it.getPath()
-  }.join(' ')
-}
-
 task poms {
   outputs.files "${buildDir}/*.pom"
   pom {
